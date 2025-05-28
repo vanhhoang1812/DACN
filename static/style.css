@@ -1,0 +1,171 @@
+/* Tổng thể và Nền */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Nền gradient nhẹ nhàng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Chiều cao tối thiểu là 100% viewport */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Đảm bảo padding không làm tràn ra ngoài */
+}
+
+.center-container {
+    background-color: #ffffff;
+    border-radius: 15px; /* Bo tròn các góc */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ nhàng */
+    padding: 35px;
+    width: 100%;
+    max-width: 600px; /* Chiều rộng tối đa của container */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Khoảng cách giữa các phần tử */
+}
+
+/* Tiêu đề */
+h1 {
+    color: #333;
+    margin-bottom: 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Hộp tìm kiếm và gửi tin nhắn */
+.search-box {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa input, dropdown và button */
+    width: 100%;
+    flex-wrap: wrap; /* Cho phép các mục xuống dòng trên màn hình nhỏ */
+    justify-content: center; /* Căn giữa khi các mục xuống dòng */
+}
+
+.search-box input[type="text"],
+.search-box .dropdown {
+    flex-grow: 1; /* Cho phép input và dropdown mở rộng */
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Bo tròn hoàn toàn */
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Đảm bảo padding không làm tràn */
+}
+
+.search-box input[type="text"]:focus,
+.search-box .dropdown:focus {
+    border-color: #007bff; /* Màu viền khi focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.search-box .dropdown {
+    -webkit-appearance: none; /* Bỏ giao diện mặc định của select */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    max-width: 200px; /* Giới hạn chiều rộng của dropdown */
+    text-align: center;
+    text-align-last: center; /* Căn giữa chữ trong dropdown */
+}
+
+.search-box .button {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0; /* Không co lại */
+    min-width: 60px; /* Đảm bảo nút có kích thước đủ */
+}
+
+.search-box .button:hover {
+    background-color: #0056b3; /* Màu xanh đậm hơn khi hover */
+    transform: translateY(-2px); /* Hiệu ứng nhấc nhẹ lên */
+}
+
+.search-box .button:active {
+    transform: translateY(0); /* Trở về vị trí cũ khi click */
+}
+
+/* Nhật ký chat */
+#chat-log {
+    background-color: #f0f2f5; /* Nền nhẹ nhàng cho log chat */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    max-height: 400px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Tạo thanh cuộn khi nội dung tràn */
+    border: 1px solid #e0e0e0;
+    word-wrap: break-word; /* Tự động xuống dòng khi từ quá dài */
+}
+
+#chat-log div {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+#chat-log div:last-child {
+    margin-bottom: 0;
+}
+
+#chat-log div b {
+    font-weight: 600;
+    color: #444;
+}
+
+/* Tin nhắn người dùng */
+#chat-log div:nth-child(odd) { /* Tin nhắn Bạn */
+    background-color: #e0f7fa; /* Màu xanh nhạt */
+    color: #333;
+    align-self: flex-end; /* Căn phải */
+    border-bottom-left-radius: 2px;
+}
+
+/* Tin nhắn Bot */
+#chat-log div:nth-child(even) { /* Tin nhắn Bot */
+    background-color: #e6e6fa; /* Màu tím nhạt */
+    color: #333;
+    align-self: flex-start; /* Căn trái */
+    border-bottom-right-radius: 2px;
+}
+
+/* Responsive cho màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .center-container {
+        padding: 25px;
+        margin: 10px; /* Giảm margin trên di động */
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .search-box {
+        flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+        align-items: stretch; /* Kéo dài các phần tử ra */
+    }
+
+    .search-box input[type="text"],
+    .search-box .dropdown,
+    .search-box .button {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        max-width: none; /* Bỏ giới hạn chiều rộng */
+    }
+
+    .search-box .dropdown {
+        margin-top: 10px; /* Khoảng cách giữa input và dropdown */
+        text-align-last: initial; /* Bỏ căn giữa chữ trong dropdown trên mobile */
+    }
+
+    .search-box .button {
+        margin-top: 10px; /* Khoảng cách giữa dropdown và button */
+    }
+}
