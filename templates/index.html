@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Áo Dài</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="center-container">
+        <h1>CHAT BOT</h1>
+
+        <form method="POST" action="/">
+            <div class="search-box">
+                <input type="text" name="message" placeholder="Bạn muốn biết gì?" required
+                       value="{{ user_message }}">
+                <select name="model" class="dropdown">
+                    <option value="lstm" {% if selected_model == 'lstm' %}selected{% endif %}>LSTM</option>
+                    <option value="lstm_beam" {% if selected_model == 'lstm_beam' %}selected{% endif %}>LSTM with BeamSearch</option>
+                    <option value="bilstm" {% if selected_model == 'bilstm' %}selected{% endif %}>BiDirectional</option>
+                    <option value="bilstm_beam" {% if selected_model == 'bilstm_beam' %}selected{% endif %}>BiDirectional with BeamSearch</option>
+                    <option value="lstm_attention" {% if selected_model == 'lstm_attention' %}selected{% endif %}>LSTM Attention</option>
+                </select>
+                <button type="submit" class="button">Gửi</button>
+            </div>
+        </form>
+
+        {% if user_message %}
+        <div id="chat-log">
+            <div><b>Bạn:</b> {{ user_message }}</div>
+            <div><b>Bot:</b> {{ bot_reply }}</div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
